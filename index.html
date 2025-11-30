@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shannon Goddard | Loyal9 LLC</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet" crossorigin="anonymous">
+  <link rel="manifest" href="data:application/manifest+json,{
+    \"name\":\"Shannon Goddard\",
+    \"short_name\":\"Shannon\",
+    \"start_url\":\".\",
+    \"display\":\"standalone\",
+    \"background_color\":\"#0f172a\",
+    \"theme_color\":\"#0f172a\",
+    \"icons\":[{\"src\":\"img\avatar.jpg\",\"sizes\":\"192x192\",\"type\":\"image/png\"}]
+  }">
+  <style>
+    body{font-family:-apple-system,system-ui,Arial,sans-serif;background:#000000;color:white;margin:0;padding:20px;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+    #avatar{border-radius:50%;width:120px;height:120px;margin-bottom:20px;box-shadow:0 10px 30px rgba(0,0,0,0.5)}
+    h1{font-size:2.2em;margin:0.2em 0}
+    p{font-size:1.3em;margin:0.5em 0}
+    .links a{color:#FFFFFF;text-decoration:none;margin:0 12px;font-size:1.4em}
+    a:hover {color: #333333;}
+    button{background:#04AA6D;padding:16px 32px;font-size:1.3em;border:none;border-radius:12px;color:white;margin:30px 0;cursor:pointer;box-shadow:0 8px 20px rgba(57,255,20,0.4)}
+    button:hover{background: #333333;}
+    button:active{transform:scale(0.95)}
+    #footer{max-width: 100%;height: auto;display: block;}
+  </style>
+</head>
+<body>
+  <img id="avatar" src="img/avatar.jpg" alt="Me">
+  <h1>Shannon Goddard</h1>
+  <p>Founder @ Loyal9 LLC | Open-Source code — I Pass Them Left, Then Watch the Industry Blink.</p>
+  
+  <div class="links">
+    <a href="tel:+19097089759"><i class="fa-solid fa-phone"></i></a>
+    <a href="mailto:shannon@loyal9.app"><i class="fa-solid fa-envelope"></i></a>
+    <a href="https://www.linkedin.com/in/shannon-goddard"><i class="fa-brands fa-linkedin-in"></i></a>
+    <a href="https://github.com/Shannon-Goddard"><i class="fa-brands fa-github"></i></a>
+  </div>
+
+  <button id="addContact">+ Add to Contacts</button>
+  <button id="shareBtn"><i class="fa-solid fa-share"></i></button>
+
+  <footer><img id="footer" src="img/footer.png" alt="app thumbnails"></footer>
+
+  <script>
+    const data = {
+      name: "Shannon Goddard",
+      phone: "+19097089759",
+      email: "shannon@loyal9.app",
+      url: "https://shannon/loyal9.app",
+      photo: "img/avatar.jpg"
+    };
+
+    document.getElementById("shareBtn").addEventListener("click", async () => {
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: "Shannon Goddard – Loyal9 LLC",
+            text: "Here’s my contact info!",
+            url: location.href
+          });
+        } catch(e) { alert("Share canceled"); }
+      } else {
+        alert("Web Share not supported – just copy the link :)");
+      }
+    });
+
+    document.getElementById("addContact").addEventListener("click", () => {
+      const vcard = `BEGIN:VCARD
+VERSION:3.0
+N:${data.name.split(" ").reverse().join(";")};;
+FN:${data.name}
+TEL:${data.phone}
+EMAIL:${data.email}
+URL:${data.url}
+PHOTO;VALUE=URI:${data.photo}
+END:VCARD`.replace(/\n/g, "\r\n");
+
+      const blob = new Blob([vcard], {type: "text/vcard"});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "Shannon-Goddard.vcf";
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+  </script>
+</body>
+</html>
