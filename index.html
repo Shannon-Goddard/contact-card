@@ -18,7 +18,7 @@
     \"icons\":[{\"src\":\"img\avatar.jpg\",\"sizes\":\"192x192\",\"type\":\"image/png\"}]
   }">
   <style>
-    html,body{height:100%;overflow:hidden}
+    html,body{height:100%;overflow:hidden;position:fixed;width:100%}
     body{font-family:-apple-system,system-ui,Arial,sans-serif;background:#000000;color:white;margin:0;padding:10px;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
     #avatar{border-radius:50%;width:100px;height:100px;margin-bottom:15px;box-shadow:0 10px 30px rgba(0,0,0,0.5);position:relative;z-index:2}
     h1{font-size:1.8em;margin:0.1em 0;position:relative;z-index:2}
@@ -32,7 +32,7 @@
     button:active{transform:scale(0.95)}
     footer{position:fixed;bottom:0;left:0;right:0;z-index:0}
     #footer{max-width: 100%;height: auto;display: block;}
-    @media (orientation:landscape){.buttons{display:flex;justify-content:center}}
+    @media (orientation:landscape){.buttons{display:flex;justify-content:center}#avatar{display:none}}
   </style>
 </head>
 <body>
