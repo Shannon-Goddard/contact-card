@@ -3,46 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="screen-orientation" content="portrait">
   <meta name="mobile-web-app-capable" content="yes">
-  <title>Shannon Goddard | Loyal9 LLC</title>
-  <link rel="icon" href="img/favicon.png">
-  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
-  <meta http-equiv="X-Content-Type-Options" content="nosniff">
-  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet" crossorigin="anonymous">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Shannon Goddard | Loyal9</title>
+  <link rel="apple-touch-icon" href="img/avatar.jpg">
+  
   <link rel="manifest" href="data:application/manifest+json,{
-    \"name\":\"Shannon Goddard\",
-    \"short_name\":\"Shannon\",
-    \"start_url\":\".\",
-    \"display\":\"standalone\",
-    \"background_color\":\"#0f172a\",
-    \"theme_color\":\"#0f172a\",
-    \"icons\":[{\"src\":\"img\avatar.jpg\",\"sizes\":\"192x192\",\"type\":\"image/png\"}]
+    "name":"Shannon Goddard",
+    "short_name":"Shannon",
+    "start_url":".",
+    "display":"standalone",
+    "background_color":"#000000",
+    "theme_color":"#000000",
+    "icons":[{"src":"img/avatar.jpg","sizes":"512x512","type":"image/jpeg"}]
   }">
-  <style>
-    html,body{height:100%;overflow:hidden;position:fixed;width:100%}
-    body{font-family:-apple-system,system-ui,Arial,sans-serif;background:#000000;color:white;margin:0;padding:0;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
-    #avatar{border-radius:50%;width:100px;height:100px;margin-bottom:15px;box-shadow:0 10px 30px rgba(0,0,0,0.5);position:relative;z-index:2}
-    h1{font-size:1.8em;margin:0.1em 0;position:relative;z-index:2}
-    p{font-size:1.1em;margin:0.3em 0;position:relative;z-index:2}
-    .links{position:relative;z-index:2;margin:15px 0}
-    .links a{color:#FFFFFF;text-decoration:none;margin:0 10px;font-size:2em;text-shadow:0 4px 8px rgba(0,0,0,0.8)}
-    a:hover {color: #333333;}
-    .buttons{position:relative;z-index:2}
-    button{background:#04AA6D;padding:12px 24px;font-size:1.1em;border:none;border-radius:12px;color:white;margin:10px 8px;cursor:pointer;box-shadow:0 8px 20px rgba(57,255,20,0.4)}
-    button:hover{background: #333333;}
-    button:active{transform:scale(0.95)}
-    footer{position:fixed;bottom:0;left:0;right:0;z-index:0}
-    #footer{max-width: 100%;height: auto;display: block;}
 
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body{font-family:-apple-system,system-ui,sans-serif;background:#000;color:#fff;margin:0;height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+    img{border-radius:50%;width:120px;height:120px;object-fit:cover;box-shadow:0 0 40px rgba(4,170,109,0.6);margin-bottom:20px}
+    h1{font-size:2.2em;margin:0.2em 0;font-weight:800}
+    p{font-size:1.15em;max-width:90%;line-height:1.4}
+    .links a{color:#fff;font-size:2.4em;margin:0 16px;opacity:0.9;text-shadow:0 4px 12px #000}
+    .links a:hover{opacity:1;transform:scale(1.15);transition:all .2s}
+    button{background:#04AA6D;border:none;border-radius:16px;padding:14px 28px;margin:20px 8px;font-size:1.2em;color:#fff;cursor:pointer;box-shadow:0 8px 25px rgba(4,170,109,0.5);font-weight:600}
+    button:active{transform:scale(0.94)}
   </style>
 </head>
 <body>
-  <img id="avatar" src="img/avatar.jpg" alt="Me">
+
+  <img src="img/avatar.jpg" alt="Shannon Goddard">
   <h1>Shannon Goddard</h1>
-  <p>Founder @ Loyal9 LLC | Open-Source code — I Pass Them Left, Then Watch the Industry Blink.</p>
+  <p>Founder @ Loyal9 LLC<br>Open-Source code — I Pass Them Left, Then Watch the Industry Blink.</p>
   
   <div class="links">
     <a href="tel:+19097089759"><i class="fa-solid fa-phone"></i></a>
@@ -53,53 +46,52 @@
 
   <div class="buttons">
     <button id="addContact">+ Add to Contacts</button>
-    <button id="shareBtn"><i class="fa-solid fa-share"></i></button>
+    <button id="shareBtn"><i class="fa-solid fa-share-nodes"></i> Share Me</button>
   </div>
-
-
 
   <script>
     const data = {
       name: "Shannon Goddard",
       phone: "+19097089759",
       email: "shannon@loyal9.app",
-      url: "https://shannon-goddard.github.io/contact-card/",
-      photo: "img/favicon.png"
+      url: location.href,
+      photo: location.origin + "/img/avatar.jpg"  // Makes PHOTO work even when shared
     };
 
-    document.getElementById("shareBtn").addEventListener("click", async () => {
+    document.getElementById("shareBtn").onclick = async () => {
       if (navigator.share) {
-        try {
-          await navigator.share({
-            title: "Shannon Goddard – Loyal9 LLC",
-            text: "Here’s my contact info!",
-            url: location.href
-          });
-        } catch(e) { alert("Share canceled"); }
+        await navigator.share({
+          title: "Shannon Goddard – Loyal9 LLC",
+          text: "Here’s my contact – let’s stay in touch!",
+          url: location.href
+        });
       } else {
-        alert("Web Share not supported – just copy the link :)");
+        prompt("Copy this link:", location.href);
       }
-    });
+    };
 
-    document.getElementById("addContact").addEventListener("click", () => {
-      const vcard = `BEGIN:VCARD
-VERSION:3.0
-N:${data.name.split(" ").reverse().join(";")};;
-FN:${data.name}
-TEL:${data.phone}
-EMAIL:${data.email}
-URL:${data.url}
-PHOTO;VALUE=URI:${data.photo}
-END:VCARD`.replace(/\n/g, "\r\n");
+    document.getElementById("addContact").onclick = () => {
+      const vcf = [
+        "BEGIN:VCARD",
+        "VERSION:3.0",
+        "N:Goddard;Shannon;;;",
+        "FN:Shannon Goddard",
+        "ORG:Loyal9 LLC",
+        "TEL;TYPE=CELL:" + data.phone,
+        "EMAIL:" + data.email,
+        "URL:" + data.url,
+        "PHOTO;VALUE=URI:" + data.photo,
+        "END:VCARD"
+      ].join("\r\n");
 
-      const blob = new Blob([vcard], {type: "text/vcard"});
+      const blob = new Blob([vcf], {type: "text/vcard"});
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
       a.download = "Shannon-Goddard.vcf";
       a.click();
       URL.revokeObjectURL(url);
-    });
+    };
   </script>
 </body>
 </html>
