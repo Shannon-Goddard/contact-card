@@ -23,29 +23,26 @@
       display:flex;flex-direction:column;align-items:center;justify-content:center;
       text-align:center;overflow:hidden;
     }
-    .content{opacity:0;animation:fadeUp .9s ease-out forwards}
-    @keyframes fadeUp{
-      from{opacity:0;transform:translateY(24px)}
-      to{opacity:1;transform:translateY(0)}
+    .content > * {opacity:0;animation:fadeUp .9s ease-out forwards}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+    
+    h1{
+      font-size:2.1em;margin:0.2em 0;font-weight:860;letter-spacing:-0.6px;
+      text-shadow:0 0 32px rgba(4,170,109,.45);
+      animation-delay:.15s
     }
-    h1{font-size:860 2.1em/1 -apple-system,sans-serif;margin:0.2em 0;
-       letter-spacing:-0.6px;text-shadow:0 0 32px rgba(4,170,109,.45);
-       animation-delay:.15s}
-    p{font-size:1.18em;max-width:90%;line-height:1.5;
-      animation-delay:.3s}
-    p>br{display:none}
-    p::after{
-      content:"Open-Source code — I Pass Them Left, Then Watch the Industry Blink.";
-      display:block;
-      margin-top:.7em;
-      font-size:.88em;
-      color:#bbb;
-      font-weight:500;
-      /* --- THE FIX --- */
-      text-align: center; 
+    .title-line{
+      font-size:1.18em;line-height:1.5;margin:0;
+      animation-delay:.3s
+    }
+    .slogan{
+      margin:1.1em auto 0;
+      font-size:.88em;color:#bbb;font-weight:500;max-width:90%;
+      animation-delay:.45s
     }
     .links{
-      animation-delay:.45s;margin:28px 0
+      margin:32px 0;
+      animation-delay:.6s
     }
     .links a{
       color:#fff;font-size:2.5em;margin:0 15px;opacity:.88;
@@ -53,29 +50,30 @@
     }
     .links a:hover{opacity:1;transform:scale(1.18)}
     .buttons{
-      animation-delay:.6s;display:flex;gap:18px;flex-wrap:wrap;
-      justify-content:center;margin-top:20px
+      display:flex;gap:18px;flex-wrap:wrap;justify-content:center;
+      animation-delay:.75s
     }
     button{
       background:#04AA6D;border:none;border-radius:18px;
-      padding:15px 32px;font-size:1.22em;color:#fff;
-      cursor:pointer;box-shadow:0 10px 30px rgba(4,170,109,.5);
-      font-weight:600;transition:transform .2s,box-shadow .2s
+      padding:15px 32px;font-size:1.22em;color:#fff;cursor:pointer;
+      box-shadow:0 10px 30px rgba(4,170,109,.5);font-weight:600;
+      transition:transform .2s,box-shadow .2s
     }
     button:active{transform:scale(.94)}
     button i{margin-right:8px}
-    h1,p,.links,.buttons{animation:fadeUp .9s ease-out forwards}
+    
     @media(max-width:360px){
-      h1{font-size:1.9em}.links a{font-size:2.2em}
+      h1{font-size:1.9em}
+      .links a{font-size:2.2em}
       button{font-size:1.15em;padding:14px 26px}
     }
   </style>
-  
 </head>
 <body>
   <div class="content">
     <h1>Shannon Goddard</h1>
-    <p>Founder @ Loyal9 LLC</p>
+    <p class="title-line">Founder @ Loyal9 LLC</p>
+    <div class="slogan">Open-Source code — I Pass Them Left, Then Watch the Industry Blink.</div>
     
     <div class="links">
       <a href="tel:+19097089759"><i class="fa-solid fa-phone"></i></a>
@@ -83,7 +81,6 @@
       <a href="https://www.linkedin.com/in/shannon-goddard"><i class="fa-brands fa-linkedin-in"></i></a>
       <a href="https://github.com/Shannon-Goddard"><i class="fa-brands fa-github"></i></a>
     </div>
-
     <div class="buttons">
       <button id="addContact">+ Add to Contacts</button>
       <button id="shareBtn"><i class="fa-solid fa-share-nodes"></i> Share Me</button>
@@ -93,12 +90,10 @@
   <script>
     const data={name:"Shannon Goddard",phone:"+19097089759",email:"shannon@loyal9.app",
       url:location.href,photo:location.origin+"/img/avatar.png"};
-
-    document.getElementById("shareBtn").onclick=async()=>{if(navigator.share){
+    document.getElementById("shareBtn").onclick=async()=>{navigator.share?
       await navigator.share({title:"Shannon Goddard – Loyal9 LLC",
-        text:"Here’s my contact – let’s stay in touch!",url:location.href})
-    }else{prompt("Copy this link:",location.href)}};
-
+      text:"Here’s my contact – let’s stay in touch!",url:location.href}):
+      prompt("Copy this link:",location.href)};
     document.getElementById("addContact").onclick=()=>{
       const vcf=["BEGIN:VCARD","VERSION:3.0","N:Goddard;Shannon;;;","FN:Shannon Goddard",
         "ORG:Loyal9 LLC","TEL;TYPE=CELL:"+data.phone,"EMAIL:"+data.email,
