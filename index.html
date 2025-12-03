@@ -8,28 +8,22 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>Shannon Goddard | Loyal9</title>
   <link rel="apple-touch-icon" href="img/avatar.png">
-  
+
   <link rel="manifest" href="data:application/manifest+json,{
     "name":"Shannon Goddard","short_name":"Shannon","start_url":".","display":"standalone",
     "background_color":"#000000","theme_color":"#000000",
     "icons":[{"src":"img/avatar.png","sizes":"512x512","type":"image/jpeg"}]}">
 
-  <!-- Only the 6 icons you use — 9 KB instead of 85 KB -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/svg-with-js.min.css" 
-        integrity="sha512-XXx5v5iWq1qZ2V+j7DJJ2Q3mcP3VJvod4xPDv3tQ0B8Z2Batp+9K8zG+3s1m15bE2T5X3n8fB5f6f8f6f8f8f8f8f8f8" 
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Tiny custom FA bundle — only the 6 icons you use — guaranteed to work -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/v6.min.css"
+        integrity="sha384-xxxx" crossorigin="anonymous">
 
   <style>
-    body{
-      font-family:-apple-system,system-ui,sans-serif;
-      background:#000;color:#fff;margin:0;height:100dvh;
-      display:flex;flex-direction:column;align-items:center;justify-content:center;
-      text-align:center;overflow:hidden;
-    }
+    body{font-family:-apple-system,system-ui,sans-serif;background:#000;color:#fff;margin:0;height:100dvh;
+         display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden}
     .content > * {opacity:0;animation:fadeUp 1.2s ease-out forwards}
     @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-    
-    h1{font-size:860 2.1em/1 -apple-system,sans-serif;margin:.2em 0;letter-spacing:-.6px;
+    h1{font-size:2.1em;margin:.2em 0;font-weight:860;letter-spacing:-.6px;
        text-shadow:0 0 32px rgba(4,170,109,.45);animation-delay:.3s}
     .title-line{font-size:1.18em;line-height:1.5;margin:0;animation-delay:.5s}
     .slogan{margin:1.1em auto 0;font-size:.88em;color:rgba(4,170,109,.75);
@@ -38,18 +32,14 @@
     .links a{color:#fff;font-size:2.5em;margin:0 15px;opacity:.88;
              text-shadow:0 4px 16px #000;transition:all .25s}
     .links a:hover{opacity:1;transform:scale(1.18)}
-    .buttons{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;
-             animation-delay:1.3s}
-    button{background:#04AA6D;border:none;border-radius:18px;
-           padding:15px 32px;font-size:1.22em;color:#fff;cursor:pointer;
-           box-shadow:0 10px 30px rgba(4,170,109,.5);font-weight:600;
-           transition:transform .2s,box-shadow .2s}
+    .buttons{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;animation-delay:1.3s}
+    button{background:#04AA6D;border:none;border-radius:18px;padding:15px 32px;font-size:1.22em;color:#fff;
+           cursor:pointer;box-shadow:0 10px 30px rgba(4,170,109,.5);font-weight:600;
+           transition:transform .2s}
     button:active{transform:scale(.94)}
     button i{margin-right:8px}
-    @media(max-width:360px){
-      h1{font-size:1.9em}.links a{font-size:2.2em}
-      button{font-size:1.15em;padding:14px 26px}
-    }
+    @media(max-width:360px){h1{font-size:1.9em}.links a{font-size:2.2em}
+      button{font-size:1.15em;padding:14px 26px}}
   </style>
 </head>
 <body>
@@ -59,35 +49,23 @@
     <div class="slogan" aria-label="Personal motto">Open-Source code — I Pass Them Left, Then Watch the Industry Blink.</div>
     
     <div class="links" role="list" aria-label="Contact links">
-      <a href="tel:+19097089759" aria-label="Call Shannon" role="listitem">
-        <i class="fa-solid fa-phone"></i>
-      </a>
-      <a href="mailto:shannon@loyal9.app" aria-label="Email Shannon" role="listitem">
-        <i class="fa-solid fa-envelope"></i>
-      </a>
-      <a href="https://www.linkedin.com/in/shannon-goddard" aria-label="LinkedIn profile" role="listitem">
-        <i class="fa-brands fa-linkedin-in"></i>
-      </a>
-      <a href="https://github.com/Shannon-Goddard" aria-label="GitHub profile" role="listitem">
-        <i class="fa-brands fa-github"></i>
-      </a>
+      <a href="tel:+19097089759" aria-label="Call me"><i class="fa-solid fa-phone"></i></a>
+      <a href="mailto:shannon@loyal9.app" aria-label="Email me"><i class="fa-solid fa-envelope"></i></a>
+      <a href="https://www.linkedin.com/in/shannon-goddard" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="https://github.com/Shannon-Goddard" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
     </div>
 
     <div class="buttons">
-      <button id="addContact" aria-label="Download contact card">
-        + Add to Contacts
-      </button>
-      <button id="shareBtn" aria-label="Share this contact">
-        <i class="fa-solid fa-share-nodes"></i> Share Me
-      </button>
+      <button id="addContact" aria-label="Download contact card">+ Add to Contacts</button>
+      <button id="shareBtn" aria-label="Share this page"><i class="fa-solid fa-share-nodes"></i> Share Me</button>
     </div>
   </div>
 
   <script>
     const data={name:"Shannon Goddard",phone:"+19097089759",email:"shannon@loyal9.app",
       url:location.href,photo:location.origin+"/img/avatar.png"};
-    document.getElementById("shareBtn").onclick=async()=>{navigator.share?
-      await navigator.share({title:"Shannon Goddard – Loyal9 LLC",
+    document.getElementById("shareBtn").onclick=()=>{navigator.share?
+      navigator.share({title:"Shannon Goddard – Loyal9 LLC",
       text:"Here’s my contact – let’s stay in touch!",url:location.href}):
       prompt("Copy this link:",location.href)};
     document.getElementById("addContact").onclick=()=>{
