@@ -1,10 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E8FF25RJ5H"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-E8FF25RJ5H');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Digital business card for Shannon Goddard, Founder of Loyal9 LLC">
     <meta name="theme-color" content="#04AA6D">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://shannon.loyal9.app">
+    <meta property="og:title" content="Shannon Goddard | Founder @ Loyal9 LLC">
+    <meta property="og:description" content="Open-Source code — We Pass Them Left, Then Watch the Industry Blink.">
+    <meta property="og:image" content="https://shannon.loyal9.app/icon-512.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://shannon.loyal9.app">
+    <meta property="twitter:title" content="Shannon Goddard | Founder @ Loyal9 LLC">
+    <meta property="twitter:description" content="Open-Source code — We Pass Them Left, Then Watch the Industry Blink.">
+    <meta property="twitter:image" content="https://shannon.loyal9.app/icon-512.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Shannon">
@@ -24,6 +46,34 @@
             justify-content: center;
             align-items: center;
             perspective: 2000px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: float 20s infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
         }
         
         .card {
@@ -34,6 +84,7 @@
             transform-style: preserve-3d;
             transition: transform 0.6s;
             cursor: pointer;
+            z-index: 1;
         }
         
         .card.flipped {
@@ -55,14 +106,54 @@
         }
         
         .front {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            background: 
+                linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(45, 45, 45, 0.95) 100%),
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.02) 2px, rgba(255,255,255,0.02) 4px),
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255,255,255,0.02) 2px, rgba(255,255,255,0.02) 4px);
+            box-shadow: 
+                0 30px 60px rgba(0,0,0,0.5),
+                inset 0 1px 3px rgba(255,255,255,0.1),
+                inset 0 -1px 3px rgba(0,0,0,0.5);
+        }
+        
+        .front::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(255,255,255,0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255,255,255,0.02) 0%, transparent 50%);
+            pointer-events: none;
         }
         
         .back {
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            background: 
+                linear-gradient(135deg, rgba(10, 10, 10, 0.95) 0%, rgba(26, 26, 26, 0.95) 100%),
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.015) 2px, rgba(255,255,255,0.015) 4px),
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255,255,255,0.015) 2px, rgba(255,255,255,0.015) 4px);
             transform: rotateY(180deg);
             text-align: center;
             position: relative;
+            box-shadow: 
+                0 30px 60px rgba(0,0,0,0.5),
+                inset 0 1px 3px rgba(255,255,255,0.08),
+                inset 0 -1px 3px rgba(0,0,0,0.5);
+        }
+        
+        .back::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 30% 40%, rgba(4,170,109,0.03) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(4,170,109,0.02) 0%, transparent 50%);
+            pointer-events: none;
         }
         
         .logo-circle {
@@ -75,6 +166,11 @@
             color: #04AA6D;
             font-size: 1.3rem;
             margin-bottom: 15px;
+            box-shadow: 
+                0 2px 8px rgba(4,170,109,0.3),
+                inset 0 1px 2px rgba(255,255,255,0.1),
+                inset 0 -1px 2px rgba(0,0,0,0.3);
+            text-shadow: 0 0 10px rgba(4,170,109,0.5);
         }
         
         .name {
@@ -83,6 +179,10 @@
             letter-spacing: 3px;
             color: #ffffff;
             margin-bottom: 8px;
+            text-shadow: 
+                0 1px 0 rgba(0,0,0,0.8),
+                0 2px 4px rgba(0,0,0,0.5),
+                0 0 20px rgba(255,255,255,0.1);
         }
         
         .title {
@@ -111,6 +211,91 @@
         
         .contact-item i {
             color: #04AA6D;
+        }
+        
+        .status-item {
+            font-size: clamp(0.65rem, 1.6vw, 0.85rem);
+            color: #04AA6D;
+            margin: clamp(8px, 1.5vw, 12px) 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+            font-style: italic;
+        }
+        
+        .status-item i {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @media (orientation: portrait) {
+            .action-buttons {
+                right: 10px;
+                gap: 10px;
+            }
+            
+            .action-btn {
+                width: 48px;
+                height: 48px;
+                font-size: 1.1rem;
+            }
+            
+            .face {
+                padding: clamp(25px, 5vw, 35px) clamp(20px, 4vw, 30px);
+            }
+            
+            .logo-circle {
+                font-size: clamp(1rem, 3vw, 1.2rem);
+                padding: 6px 10px;
+                margin-bottom: 12px;
+            }
+            
+            .name {
+                font-size: clamp(0.9rem, 3vw, 1.3rem);
+                margin-bottom: 6px;
+            }
+            
+            .title {
+                font-size: clamp(0.65rem, 1.6vw, 0.8rem);
+                margin-bottom: 10px;
+            }
+            
+            .divider {
+                width: 40px;
+                margin-bottom: 10px;
+            }
+            
+            .contact-item, .status-item {
+                font-size: clamp(0.6rem, 1.4vw, 0.75rem);
+                margin: 4px 0;
+                gap: 4px;
+            }
+            
+            .logo-large {
+                font-size: clamp(4rem, 12vw, 6rem);
+            }
+            
+            .tagline-full {
+                font-size: clamp(0.8rem, 2vw, 1rem);
+                line-height: 1.6;
+            }
         }
         
         .logo-large {
@@ -187,10 +372,64 @@
         .flip-counter.show {
             opacity: 1;
         }
+        
+        #qrModal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+        }
+        
+        #qrContent {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        #qrContent h3 {
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        #closeQr {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: #666;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        #qrcode {
+            margin: 0 auto;
+        }
     </style>
 </head>
 <body>
+    <div class="particles" id="particles"></div>
     <div class="action-buttons">
+        <button class="action-btn" id="installBtn" title="Install App" style="display:none;">
+            <i class="fa-solid fa-download"></i>
+        </button>
+        <button class="action-btn" id="qrBtn" title="Show QR Code">
+            <i class="fa-solid fa-qrcode"></i>
+        </button>
         <button class="action-btn" id="addContact" title="Add to Contacts">
             <i class="fa-solid fa-user-plus"></i>
         </button>
@@ -204,27 +443,145 @@
             <i class="fa-brands fa-linkedin-in"></i>
         </button>
     </div>
+    
+    <div id="qrModal" style="display:none;">
+        <div id="qrContent">
+            <button id="closeQr">&times;</button>
+            <h3>Scan to Save Contact</h3>
+            <div id="qrcode"></div>
+        </div>
+    </div>
     <div class="card" onclick="this.classList.toggle('flipped')">
         <div class="face front">
             <div class="logo-circle">&lt; /&gt;</div>
             <h1 class="name">SHANNON GODDARD</h1>
-            <p class="title">Founder</p>
+            <p class="title">Loyal9 LLC</p>
             <div class="divider"></div>
             <div>
                 <p class="contact-item"><i class="fa-solid fa-phone"></i> +1 (909) 708-9759</p>
                 <p class="contact-item"><i class="fa-solid fa-envelope"></i> shannon@loyal9.app</p>
-                <p class="contact-item"><i class="fa-solid fa-globe"></i> loyal9.app</p>
+                <p class="status-item"><i class="fa-solid fa-circle-dot"></i> Open to remote/contract work (chaos preferred)</p>
             </div>
         </div>
         <div class="face back">
             <div class="logo-large">&lt; /&gt;</div>
-            <p class="tagline-full">Founder @ Loyal9 LLC<br><span class="tagline-separator">|</span><br>Open-Source code — We Pass Them Left,<br>Then Watch the Industry Blink.</p>
+            <p class="tagline-full">Founder @ Loyal9 LLC<br><span class="tagline-separator"><i class="fa-solid fa-left-long"></i></span><br>Open-Source code — We Pass Them Left,<br>Then Watch the Industry Blink.</p>
             <div class="flip-counter" id="flipCounter"></div>
         </div>
     </div>
     <script>
         const card = document.querySelector('.card');
         let flipCount = parseInt(localStorage.getItem('flipCount') || '0');
+        let isFlipped = false;
+        
+        // Mouse parallax tilt on desktop
+        card.addEventListener('mousemove', (e) => {
+            if (window.innerWidth < 768 || isFlipped) return;
+            
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = ((y - centerY) / centerY) * -10;
+            const rotateY = ((x - centerX) / centerX) * 10;
+            
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            if (!isFlipped) {
+                card.style.transform = '';
+            }
+        });
+        
+        // Animated particles background
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 20 + 's';
+            particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+            particlesContainer.appendChild(particle);
+        }
+        
+        // Easter egg: Long-press logo plays sound
+        let longPressTimer;
+        const logoCircle = document.querySelector('.logo-circle');
+        
+        logoCircle.addEventListener('mousedown', () => {
+            longPressTimer = setTimeout(() => {
+                const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZiTYIGGS57OihUBELTKXh8bllHAU2jdXvzn0pBSh+zPDajzsKElyx6OyrWBUIQ5zd8sFuJAUuhM/z2Ik2CBdju+zooVARC0yl4fG5ZRwFNo3V7859KQUofszw2o87ChJcsejtq1gVCEOc3fLBbiQFL4TP89iJNggXY7vs6KFQEQtMpeHxuWUcBTaN1e/OfSkFKH7M8NqPOwsSXLHo7atYFQhDnN3ywW4kBS+Ez/PYiTYIF2O77OihUBELTKXh8bllHAU2jdXvzn0pBSh+zPDajzsKElyx6O2rWBUIQ5zd8sFuJAUvhM/z2Ik2CBdju+zooVARC0yl4fG5ZRwFNo3V7859KQUofszw2o87ChJcsejtq1gVCEOc3fLBbiQFL4TP89iJNggXY7vs6KFQEQtMpeHxuWUcBTaN1e/OfSkFKH7M8NqPOwsSXLHo7atYFQhDnN3ywW4kBS+Ez/PYiTYIF2O77OihUBELTKXh8bllHAU2jdXvzn0pBSh+zPDajzsKElyx6O2rWBUIQ5zd8sFuJAUvhM/z2Ik2CBdju+zooVARC0yl4fG5ZRwFNo3V7859KQUofszw2o87ChJcsejtq1gVCEOc3fLBbiQFL4TP89iJNggXY7vs6KFQEQtMpeHxuWUcBTaN1e/OfSkFKH7M8NqPOwsSXLHo7atYFQhDnN3ywW4kBS+Ez/PYiTYIF2O77OihUBELTKXh8bllHAU2jdXvzn0pBSh+zPDajzsKElyx6O2rWBUIQ5zd8sFuJAUvhM/z2Ik2CBdju+zooVARC0yl4fG5ZRwFNo3V7859KQUofszw2o87ChJcsejtq1gVCEOc3fLBbiQFL4TP89iJNggXY7vs6KFQEQtMpeHxuWUcBTaN1e/OfSkFKH7M8NqPOwsSXLHo7atYFQ==');
+                audio.play().catch(() => {});
+                logoCircle.style.animation = 'spin 0.5s ease';
+                setTimeout(() => logoCircle.style.animation = '', 500);
+            }, 800);
+        });
+        
+        logoCircle.addEventListener('mouseup', () => clearTimeout(longPressTimer));
+        logoCircle.addEventListener('mouseleave', () => clearTimeout(longPressTimer));
+        
+        logoCircle.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            longPressTimer = setTimeout(() => {
+                const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZiTYIGGS57OihUBELTKXh8bllHAU2jdXvzn0pBSh+zPDajzsKElyx6OyrWBUIQ5zd8sFuJAUuhM/z2Ik2CBdju+zooVARC0yl4fG5ZRwFNo3V7859KQUofszw2o87ChJcsejtq1gVCEOc3fLBbiQFL4TP89iJNggXY7vs6KFQEQtMpeHxuWUcBTaN1e/OfSkFKH7M8NqPOwsSXLHo7atYFQhDnN3ywW4kBS+Ez/PYiTYIF2O77OihUBELTKXh8bllHAU2jdXvzn0pBSh+zPDajzsKElyx6O2rWBUIQ5zd8sFuJAUvhM/z2Ik2CBdju+zooVARC0yl4fG5ZRwFNo3V7859KQUofszw2o87ChJcsejtq1gVCEOc3fLBbiQFL4TP89iJNggXY7vs6KFQEQtMpeHxuWUcBTaN1e/OfSkFKH7M8NqPOwsSXLHo7atYFQhDnN3ywW4kBS+Ez/PYiTYIF2O77OihUBELTKXh8bllHAU2jdXvzn0pBSh+zPDajzsKElyx6O2rWBUIQ5zd8sFuJAUvhM/z2Ik2CBdju+zooVARC0yl4fG5ZRwFNo3V7859KQUofszw2o87ChJcsejtq1gVCEOc3fLBbiQFL4TP89iJNggXY7vs6KFQEQtMpeHxuWUcBTaN1e/OfSkFKH7M8NqPOwsSXLHo7atYFQhDnN3ywW4kBS+Ez/PYiTYIF2O77OihUBELTKXh8bllHAU2jdXvzn0pBSh+zPDajzsKElyx6O2rWBUIQ5zd8sFuJAUvhM/z2Ik2CBdju+zooVARC0yl4fG5ZRwFNo3V7859KQUofszw2o87ChJcsejtq1gVCEOc3fLBbiQFL4TP89iJNggXY7vs6KFQEQtMpeHxuWUcBTaN1e/OfSkFKH7M8NqPOwsSXLHo7atYFQ==');
+                audio.play().catch(() => {});
+                logoCircle.style.animation = 'spin 0.5s ease';
+                setTimeout(() => logoCircle.style.animation = '', 500);
+            }, 800);
+        });
+        
+        logoCircle.addEventListener('touchend', () => clearTimeout(longPressTimer));
+        
+        // Easter egg: Shake to trigger confetti
+        let lastX, lastY, lastZ;
+        let shakeCount = 0;
+        
+        window.addEventListener('devicemotion', (e) => {
+            if (!e.accelerationIncludingGravity) return;
+            
+            const { x, y, z } = e.accelerationIncludingGravity;
+            
+            if (lastX !== undefined) {
+                const deltaX = Math.abs(x - lastX);
+                const deltaY = Math.abs(y - lastY);
+                const deltaZ = Math.abs(z - lastZ);
+                
+                if (deltaX > 20 || deltaY > 20 || deltaZ > 20) {
+                    shakeCount++;
+                    if (shakeCount > 2) {
+                        createConfetti();
+                        shakeCount = 0;
+                    }
+                }
+            }
+            
+            lastX = x;
+            lastY = y;
+            lastZ = z;
+        });
+        
+        function createConfetti() {
+            const colors = ['#04AA6D', '#ffffff', '#667eea'];
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'fixed';
+                confetti.style.width = '10px';
+                confetti.style.height = '10px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = '-10px';
+                confetti.style.borderRadius = '50%';
+                confetti.style.pointerEvents = 'none';
+                confetti.style.zIndex = '9999';
+                confetti.style.animation = `fall ${2 + Math.random() * 2}s linear forwards`;
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 4000);
+            }
+        }
         
         const backMessages = [
             'Founder @ Loyal9 LLC<br><span class="tagline-separator">|</span><br>Open-Source code — We Pass Them Left,<br>Then Watch the Industry Blink.',
@@ -237,6 +594,8 @@
         let messageIndex = 0;
         
         card.onclick = () => {
+            isFlipped = !isFlipped;
+            card.style.transform = '';
             card.classList.toggle('flipped');
             
             if (!card.classList.contains('flipped')) {
@@ -282,6 +641,61 @@
             e.stopPropagation();
             window.open('https://www.linkedin.com/in/shannon-goddard', '_blank');
         };
+        
+        // QR Code
+        document.getElementById('qrBtn').onclick = (e) => {
+            e.stopPropagation();
+            const modal = document.getElementById('qrModal');
+            const qrDiv = document.getElementById('qrcode');
+            qrDiv.innerHTML = '';
+            
+            // Generate QR using Google Charts API
+            const qrUrl = 'https://shannon.loyal9.app';
+            const qrImg = document.createElement('img');
+            qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(qrUrl)}`;
+            qrImg.style.width = '250px';
+            qrImg.style.height = '250px';
+            qrDiv.appendChild(qrImg);
+            
+            modal.style.display = 'flex';
+        };
+        
+        document.getElementById('closeQr').onclick = () => {
+            document.getElementById('qrModal').style.display = 'none';
+        };
+        
+        document.getElementById('qrModal').onclick = (e) => {
+            if (e.target.id === 'qrModal') {
+                document.getElementById('qrModal').style.display = 'none';
+            }
+        };
+        
+        // PWA Install button
+        let deferredPrompt;
+        const installBtn = document.getElementById('installBtn');
+        
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installBtn.style.display = 'flex';
+        });
+        
+        installBtn.onclick = async (e) => {
+            e.stopPropagation();
+            if (!deferredPrompt) return;
+            
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            
+            if (outcome === 'accepted') {
+                installBtn.style.display = 'none';
+            }
+            deferredPrompt = null;
+        };
+        
+        window.addEventListener('appinstalled', () => {
+            installBtn.style.display = 'none';
+        });
         
         // Register service worker for PWA
         if ('serviceWorker' in navigator) {
