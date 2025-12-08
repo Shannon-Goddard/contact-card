@@ -72,10 +72,10 @@
         }
         
         @keyframes float {
-            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
             10% { opacity: 1; }
             90% { opacity: 1; }
-            100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+            100% { transform: translateY(-20vh) translateX(50px); opacity: 0; }
         }
         
         .card {
@@ -89,9 +89,11 @@
             z-index: 1;
         }
         
-        @media (orientation: landscape) and (max-height: 600px) {
+        @media (orientation: landscape) {
             .card {
-                max-width: 70vh;
+                width: auto;
+                height: 85vh;
+                max-width: none;
             }
         }
         
@@ -511,6 +513,7 @@
             const particle = document.createElement('div');
             particle.className = 'particle';
             particle.style.left = Math.random() * 100 + '%';
+            particle.style.bottom = Math.random() * 100 + '%';
             particle.style.animationDelay = Math.random() * 20 + 's';
             particle.style.animationDuration = (15 + Math.random() * 10) + 's';
             particlesContainer.appendChild(particle);
@@ -615,6 +618,16 @@
                 if (flipCount >= 3) {
                     document.getElementById('flipCounter').textContent = `${flipCount} flips 🔥`;
                     document.getElementById('flipCounter').classList.add('show');
+                }
+                
+                if (flipCount === 25) {
+                    createConfetti();
+                    setTimeout(() => {
+                        alert('Must be nice to have this kind of time to play with a business card 😏');
+                        flipCount = 0;
+                        localStorage.setItem('flipCount', '0');
+                        document.getElementById('flipCounter').classList.remove('show');
+                    }, 300);
                 }
             }
         };
