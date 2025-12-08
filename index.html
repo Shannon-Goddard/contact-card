@@ -10,7 +10,7 @@
       gtag('config', 'G-E8FF25RJ5H');
     </script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="description" content="Digital business card for Shannon Goddard, Founder of Loyal9 LLC">
     <meta name="theme-color" content="#04AA6D">
     
@@ -42,12 +42,14 @@
             font-family: 'Segoe UI', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
+            min-height: 100dvh;
             display: flex;
             justify-content: center;
             align-items: center;
             perspective: 2000px;
             position: relative;
             overflow: hidden;
+            padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
         }
         
         .particles {
@@ -85,6 +87,12 @@
             transition: transform 0.6s;
             cursor: pointer;
             z-index: 1;
+        }
+        
+        @media (orientation: landscape) and (max-height: 600px) {
+            .card {
+                max-width: 70vh;
+            }
         }
         
         .card.flipped {
@@ -584,10 +592,10 @@
         }
         
         const backMessages = [
-            'Founder @ Loyal9 LLC<br><span class="tagline-separator">|</span><br>Open-Source code — We Pass Them Left,<br>Then Watch the Industry Blink.',
+            'Founder @ Loyal9 LLC<br><span class="tagline-separator"><i class="fa-solid fa-circle-left"></i></span><br>Open-Source code — We Pass Them Left,<br>Then Watch the Industry Blink.',
             'I turn chaos into revenue.',
             'Currently building Loyal9<br>— one middle finger at a time.',
-            '90s R&B + motorcycles + ramen<br>= default personality',
+            '90s Rock + skateboards + ramen<br>= default personality',
             'If it doesn\'t scale, it doesn\'t exist.',
             'Available for the right kind of trouble.'
         ];
